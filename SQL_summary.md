@@ -1,101 +1,101 @@
-CMD ( 공백 주의)
-mysql -u(username 공백가능) -p(패스워드 공백X) : mysql 서버 접속
+CMD ( 공백 주의)  
+mysql -u(username 공백가능) -p(패스워드 공백X) : mysql 서버 접속  
 
    SQL문 사용시 명령어 끝에 ;(세미콜론)을 사용해야 한다
 
-현재 사용중인 DB확인(;필수)
-show databases; : db 목록확인
-select databases(); : 현재 사용중인 db확인
-use (db이름) : 사용 할 DB선택
-show tables; : db안의 table 목록 확인
-desc 테이블 : 해당 테이블의 타입을 정렬한다.
+현재 사용중인 DB확인(;필수)  
+show databases; : db 목록확인  
+select databases(); : 현재 사용중인 db확인  
+use (db이름) : 사용 할 DB선택  
+show tables; : db안의 table 목록 확인  
+desc 테이블 : 해당 테이블의 타입을 정렬한다.  
 
-SQL내의 연산
-사칙연산 중 + / 우선순위이며 + - 후순위이다
-NULL값에 사칙연산을 하면 NULL이다
-복잡한 연산을 할 때는 내장함수를 이용한다.
-round(대상, 반올림 위치) : 반올림한다(-쓰면 정수자리)
-select round(a,3),round(b,-3) from test : a의 소수 3번째자리까지 반올림하고 b의 정수 3번째 자리까지 반올림한다 
-sqrt(대상) : 대상에 대해서 루트를 씌운다.
-select sqrt(a) from test;
-concat(문자1(행), 문자2(행)) :문자1과 문자2를 더한다
-select concat(a,b) from * : a,b 열을 합친다
-subtring(대상, 기준점, 갯수) : 대상의 기준점을 기준으로 해당 갯수만큼 출력
-select substring(a,1,2) from test : test테이블의 a열의  1번째에서 2개 만큼 출력
-TRIM : 스페이스 제거
-trim ('abc     ') = 'abc
-charater_length : sql에서 len은 뭘까? 
-날짜연산
-current_timestamp : PC의 시간 기준
-select current_timestamp;
-select current_timestamp + interval (더할 날짜) (일,주,년)
-select current_timestamp + interval 1 day : 하루를 더한다
-select current_timestamp + interval 2 week : 2주일을 더한다
-DATEDIFF(날짜1,날짜2) : 날짜1 - 날짜2
-select datediff(current_timestamp(),'2018-06-19'); : 오늘날짜 기준으로 2018-12-31를 뺀다
-CASE문
-조건에 맞는 값을 출력한다.
-CASE : CASE문을 시작한다
-WHEN (조건) THEN (출력) : 조건문에 해당하는 THEN으로 출력한다
-WHEN a = 1 THEN '남자'
-ELSE (출력) :
-ELSE a = '미지정'
-END (열이름) : CASE문에 출력되는 행을 생성한다
-END 'hi' : hi라는 행 생성
+SQL내의 연산  
+사칙연산 중 + / 우선순위이며 + - 후순위이다  
+NULL값에 사칙연산을 하면 NULL이다  
+복잡한 연산을 할 때는 내장함수를 이용한다.  
+round(대상, 반올림 위치) : 반올림한다(-쓰면 정수자리)  
+select round(a,3),round(b,-3) from test : a의 소수 3번째자리까지 반올림하고 b의 정수 3번째 자리까지 반올림한다   
+sqrt(대상) : 대상에 대해서 루트를 씌운다.  
+select sqrt(a) from test;  
+concat(문자1(행), 문자2(행)) :문자1과 문자2를 더한다  
+select concat(a,b) from * : a,b 열을 합친다  
+subtring(대상, 기준점, 갯수) : 대상의 기준점을 기준으로 해당 갯수만큼 출력  
+select substring(a,1,2) from test : test테이블의 a열의  1번째에서 2개 만큼 출력  
+TRIM : 스페이스 제거  
+trim ('abc     ') = 'abc  
+charater_length : sql에서 len은 뭘까?   
+날짜연산  
+current_timestamp : PC의 시간 기준  
+select current_timestamp;  
+select current_timestamp + interval (더할 날짜) (일,주,년)  
+select current_timestamp + interval 1 day : 하루를 더한다  
+select current_timestamp + interval 2 week : 2주일을 더한다  
+DATEDIFF(날짜1,날짜2) : 날짜1 - 날짜2  
+select datediff(current_timestamp(),'2018-06-19'); : 오늘날짜 기준으로 2018-12-31를 뺀다  
+CASE문  
+조건에 맞는 값을 출력한다.  
+CASE : CASE문을 시작한다  
+WHEN (조건) THEN (출력) : 조건문에 해당하는 THEN으로 출력한다  
+WHEN a = 1 THEN '남자'  
+ELSE (출력) :  
+ELSE a = '미지정'  
+END (열이름) : CASE문에 출력되는 행을 생성한다  
+END 'hi' : hi라는 행 생성  
 
 
-데이터 검색(select)
-DML의 언어이다.
-select (열이름) from (테이블명) : 열만 지정
-select (열이름) from (테이블명) where (조건식) : 열과 행 지정
-열 이름의 *(아스테리크)를 사용하면 전부를 뜻한다
-ex) select * from test (test테이블의 모든 열 검색)
-조건식
- = : 같다
-<> : 같지 않다.
-< > <= >= : 비교연산자
-and or not(and가 or 우선순위 높다)
-like (패턴)
-패턴 -> % 임의의 여러문자, _ : 임의의 문자하나
+데이터 검색(select)  
+DML의 언어이다.  
+select (열이름) from (테이블명) : 열만 지정  
+select (열이름) from (테이블명) where (조건식) : 열과 행 지정  
+열 이름의 *(아스테리크)를 사용하면 전부를 뜻한다  
+ex) select * from test (test테이블의 모든 열 검색)  
+조건식  
+ = : 같다  
+<> : 같지 않다.  
+< > <= >= : 비교연산자  
+and or not(and가 or 우선순위 높다)  
+like (패턴)  
+패턴 -> % 임의의 여러문자, _ : 임의의 문자하나  
 
-order by (정렬기준 열): 정렬명령어
-default로는 오름차순으로 되어있다.
-desc : 내림차순으로 정렬한다.
-문자열 정렬 기준 : 사전순
-order by (기준열1),(기준열2) : 순서중요  구분은 ,(쉼표)
-ex) select * from test order by a,b desc : 테스트 테이블에 대해 a로 오름차순 후 b로 내림차순 한다
-NULL은 가장 작은값으로 취급한다.
-LIMIT (출력할 행수) OFFSET(시작행+1) :  결과 값 제한
-select * from test limit 2 offset 0 : 첫번째 열을 시작으로 2개의 값 출력
+order by (정렬기준 열): 정렬명령어  
+default로는 오름차순으로 되어있다.  
+desc : 내림차순으로 정렬한다.  
+문자열 정렬 기준 : 사전순  
+order by (기준열1),(기준열2) : 순서중요  구분은 ,(쉼표)  
+ex) select * from test order by a,b desc : 테스트 테이블에 대해 a로 오름차순 후 b로 내림차순 한다  
+NULL은 가장 작은값으로 취급한다.  
+LIMIT (출력할 행수) OFFSET(시작행+1) :  결과 값 제한  
+select * from test limit 2 offset 0 : 첫번째 열을 시작으로 2개의 값 출력  
 
-데이터추가(insert into)
- DML의 언어이다.  
-insert into (테이블명) values(값1, 값2,...값n) : 행에 맞게 값 입력
-insert into test values(1,'안녕') : test 테이블에 1의 값과 '안녕'을 추가
-insert into 테이블명(특정 열) values(특정열에 맞는 값) : 특정 열에만 값을 입력
-insert into test(a) values(1) : a의 열의 1이라는 값 입력
-데이터수정(update)
- DML의 언어이다.  
-update 테이블명 set 수정할 값 (where {조건})
-update test set a = 2 where b = '헬로우' : test테이블의 b의 값이 헬로우인 a의 값을 2로 수정한다
+데이터추가(insert into)  
+ DML의 언어이다.    
+insert into (테이블명) values(값1, 값2,...값n) : 행에 맞게 값 입력  
+insert into test values(1,'안녕') : test 테이블에 1의 값과 '안녕'을 추가  
+insert into 테이블명(특정 열) values(특정열에 맞는 값) : 특정 열에만 값을 입력  
+insert into test(a) values(1) : a의 열의 1이라는 값 입력  
+데이터수정(update)  
+ DML의 언어이다.    
+update 테이블명 set 수정할 값 (where {조건})  
+update test set a = 2 where b = '헬로우' : test테이블의 b의 값이 헬로우인 a의 값을 2로 수정한다  
 
-데이터삭제(delete)
- DML의 언어이다.  
-delete from 테이블명 (where {조건}) : 해당 테이블의 값을 삭제한다
-delete from test : 테스트 테이블 값 삭제
-where문이 없을 경우 데이터 삭제 / 조건문이 있을 시 해당 조건문에 해당하는 값만 삭제
-테이블 자체 삭제가 아님 
+데이터삭제(delete)  
+ DML의 언어이다.    
+delete from 테이블명 (where {조건}) : 해당 테이블의 값을 삭제한다  
+delete from test : 테스트 테이블 값 삭제  
+where문이 없을 경우 데이터 삭제 / 조건문이 있을 시 해당 조건문에 해당하는 값만 삭제  
+테이블 자체 삭제가 아님   
 
-테이블 추가(CREATE)
-DDL의 언어이다.
-CREATE TABLE 테이블이름 (열이름 열타입 속성) : 테이블이름명으로 테이블을 생성한다.
-CREATE TABLE test_2 ( 
-                            no int not null,
-                            a varchar(10),
-                            b date);
-                    : test_2라는 테이블을 생성하면서 no라는 int형을 만들고 NULL값을 허용안한다.
-                     a는 varchar(10)으로 생성하고, b는 date형식으로 생성한다.
-테이블 중복명은 허용되지 않는다.
+테이블 추가(CREATE)  
+DDL의 언어이다.  
+CREATE TABLE 테이블이름 (열이름 열타입 속성) : 테이블이름명으로 테이블을 생성한다.  
+CREATE TABLE test_2 (   
+                            no int not null,  
+                            a varchar(10),  
+                            b date);  
+                    : test_2라는 테이블을 생성하면서 no라는 int형을 만들고 NULL값을 허용안한다.  
+                     a는 varchar(10)으로 생성하고, b는 date형식으로 생성한다.  
+테이블 중복명은 허용되지 않는다.  
 
 
 ALTER TABLE 테이블명 명령어(ADD,DROP,MODIFY,CHANGE)  : 추가 수정 변경 삭제
