@@ -1,3 +1,5 @@
+에버노트 : https://www.evernote.com/shard/s536/sh/71aea36d-67e7-4c3c-9bd0-04264889cd41/470eae7be57ba3cb289bd2e9cbe134bd
+
 CMD ( 공백 주의)  
 mysql -u(username 공백가능) -p(패스워드 공백X) : mysql 서버 접속  
 
